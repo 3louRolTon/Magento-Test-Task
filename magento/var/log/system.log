@@ -5489,3 +5489,30 @@ Line: 4
 [2021-05-18 09:49:48] main.INFO: Broken reference: the 'paypal.partner.right.logo' element cannot be added as child to 'sidebar.additional', because the latter doesn't exist [] []
 [2021-05-18 09:49:48] main.INFO: Broken reference: the 'bml.right.logo' element cannot be added as child to 'sidebar.additional', because the latter doesn't exist [] []
 [2021-05-18 09:49:48] main.INFO: Broken reference: the 'yotpo_bottomline' tries to reorder itself towards 'product.info.addto', but their parents are different: 'product.info.main' and '' respectively. [] []
+[2021-05-18 09:55:55] main.ERROR: Command "setup:db-schema:list" is not defined.
+
+Did you mean one of these?
+    info:backups:list
+    info:currency:list
+    info:language:list
+    info:timezone:list
+    inventory:reservation:list-inconsistencies
+    queue:consumers:list
+    setup:db-declaration:generate-whitelist
+    setup:db-schema:upgrade
+    store:website:list
+#0 /var/www/magento/vendor/symfony/console/Application.php(237): Symfony\Component\Console\Application->find('setup:db-schema...')
+#1 /var/www/magento/vendor/magento/framework/Console/Cli.php(115): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 /var/www/magento/vendor/symfony/console/Application.php(149): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/magento/bin/magento(23): Symfony\Component\Console\Application->run()
+#4 {main} [] []
+[2021-05-18 09:56:04] main.ERROR: There are no commands defined in the "db-schema" namespace.
+
+Did you mean this?
+    setup:db-schema
+#0 /var/www/magento/vendor/symfony/console/Application.php(657): Symfony\Component\Console\Application->findNamespace('db-schema')
+#1 /var/www/magento/vendor/symfony/console/Application.php(237): Symfony\Component\Console\Application->find('db-schema:list')
+#2 /var/www/magento/vendor/magento/framework/Console/Cli.php(115): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/magento/vendor/symfony/console/Application.php(149): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 /var/www/magento/bin/magento(23): Symfony\Component\Console\Application->run()
+#5 {main} [] []
