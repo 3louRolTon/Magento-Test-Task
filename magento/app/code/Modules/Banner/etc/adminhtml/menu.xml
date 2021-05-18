@@ -10,7 +10,8 @@
              title="Manage banners"
              module="Modules_Banner"
              sortOrder="1"
-             action="menuitem/index/index"
+             dependsOnModule="Modules_Banner"
+             action="banner/index"
              parent="Modules_Banner::first_level"
              resource="Magento_Backend::content" />
     </menu>
