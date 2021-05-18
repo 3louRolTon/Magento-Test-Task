@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Modules_Banner::first_level"
+             title="Banner Management"
+             module="Modules_Banner"
+             sortOrder="20"
+             resource="Magento_Backend::content" />
+        <add id="Modules_Banner::second_level"
+             title="Manage banners"
+             module="Modules_Banner"
+             sortOrder="1"
+             action="menuitem/index/index"
+             parent="Modules_Banner::first_level"
+             resource="Magento_Backend::content" />
+    </menu>
+</config>
