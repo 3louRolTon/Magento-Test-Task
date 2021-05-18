@@ -1,0 +1,38 @@
+vmconf:
+  box: "ubuntu/bionic64"
+  machine_name: "magento2-website"
+  network_ip: "16.1.10.2"
+  memory: "4096"
+  cpus:  "4"
+
+composer:
+  auth: ''
+
+server:
+  php_version: "7.2"
+  time_zone: "Europe/Helsinki"
+  php_debug_fpm_ip: "16.1.10.1"
+  php_debug_cli_ip: "10.0.2.2"
+  site_folder: "/var/www/magento"
+
+magento:
+  url: "magento2.local"
+  url_aliases: ""
+  mode: "developer"
+  edition: "community"
+  version: "2.3.2"
+  sample: "false"
+  install: "false"
+  currency: "EUR"
+  language: "en_US"
+  time_zone: "Europe/Helsinki"
+
+folders:
+  magento:
+    magento_src: "./magento"
+    magento_dest: "/var/www/magento"
+
+db:
+  name: "magentodb"
+  user: "magento"
+  password: "magento"
