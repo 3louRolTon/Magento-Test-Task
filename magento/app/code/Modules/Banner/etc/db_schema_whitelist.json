@@ -1,0 +1,16 @@
+{
+    "modules_banner_banner": {
+        "column": {
+            "id": true,
+            "name": true,
+            "banner_text": true,
+            "banner_popel": true,
+            "one_time": true,
+            "start_day": true,
+            "end_day": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
