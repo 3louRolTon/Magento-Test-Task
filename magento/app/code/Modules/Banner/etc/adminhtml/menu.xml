@@ -5,7 +5,7 @@
              title="Banner Management"
              module="Modules_Banner"
              sortOrder="20"
-             resource="Magento_Backend::content" />
+             resource="Magento_Backend::admin" />
         <add id="Modules_Banner::second_level"
              title="Manage banners"
              module="Modules_Banner"
@@ -13,6 +13,6 @@
              dependsOnModule="Modules_Banner"
              action="banner/index"
              parent="Modules_Banner::first_level"
-             resource="Magento_Backend::content" />
+             resource="Modules_Banner::view" />
     </menu>
 </config>
