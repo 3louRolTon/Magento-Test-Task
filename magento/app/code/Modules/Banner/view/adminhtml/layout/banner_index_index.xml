@@ -7,9 +7,8 @@
     </referenceBlock>
     <body>
         <referenceContainer name="content">
-            <!--<block class="Modules\Banner\Block\Display" template="Modules_Banner::index.phtml"/>-->
+            <!--<block template="Modules_Banner::banner.phtml"/>-->
             <uiComponent name="sample_listing"/>
-            <!--<uiComponent name="test_listing.xml"/>-->
         </referenceContainer>
     </body>
 </page>

@@ -11,12 +11,23 @@
     </argument>
     <dataSource name="sample_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Modules\Banner\Model\Data</argument>
+            <argument name="class" xsi:type="string">Modules\Banner\Model\DataProvider</argument>
             <argument name="name" xsi:type="string">sample_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">page_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">id</item>
+                    </item>
+                </item>
+            </argument>
         </argument>
     </dataSource>
     <columns name="sample_listing_columns">
-        <column name="id">
+        <column name="banner_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="sorting" xsi:type="string">asc</item>
@@ -24,21 +35,21 @@
                 </item>
             </argument>
         </column>
-        <column name="name">
+        <column name="banner_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Name</item>
                 </item>
             </argument>
         </column>
-        <column name="start_day">
+        <column name="banner_start_day">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Start day</item>
                 </item>
             </argument>
         </column>
-        <column name="end_day">
+        <column name="banner_end_day">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">End day</item>

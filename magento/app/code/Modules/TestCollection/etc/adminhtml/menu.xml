@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Modules_TestCollection::first_level"
+             title="Test Collection"
+             module="Modules_TestCollection"
+             sortOrder="20"
+             resource="Magento_Backend::content" />
+        <add id="Modules_TestCollection::second_level"
+             title="Manage banners"
+             module="Modules_Banner"
+             sortOrder="1"
+             dependsOnModule="Modules_Banner"
+             action="test/index"
+             parent="Modules_TestCollection::first_level"
+             resource="Magento_Backend::content" />
+    </menu>
+</config>

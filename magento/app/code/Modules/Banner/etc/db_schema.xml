@@ -6,16 +6,17 @@
  */
 -->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="modules_banner_banner" resource="default" engine="innodb" comment="Banners data">
-        <column xsi:type="int" name="id" padding="11" unsigned="false" nullable="false" identity="true" comment="ID"/>
-        <column xsi:type="varchar" name="name" nullable="false" length="50" comment="Name banner"/>
+    <table name="modules_banner_banners" resource="default" engine="innodb" comment="Banners data">
+        <column xsi:type="int" name="banner_id" padding="11" unsigned="false" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="banner_name" nullable="false" length="50" comment="Name banner"/>
         <column xsi:type="text" name="banner_text" nullable="false" comment="Banner text"/>
         <column xsi:type="text" name="banner_popel" nullable="true" comment="Banner popel"/>
-        <column xsi:type="boolean" name="one_time" nullable="false" comment="One time check"/>
-        <column xsi:type="datetime" name="start_day" nullable="false" comment="Day start"/>
-        <column xsi:type="datetime" name="end_day" nullable="false" comment="Day end"/>
+        <column xsi:type="boolean" name="banner_one_show" nullable="false" comment="One time check"/>
+        <column xsi:type="datetime" name="banner_start_day" nullable="false" comment="Day start"/>
+        <column xsi:type="datetime" name="banner_end_day" nullable="false" comment="Day end"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="id"/>
+            <column name="banner_id"/>
         </constraint>
     </table>
+
 </schema>
