@@ -5,7 +5,7 @@ use Modules\Banner\Api\Data\BannerInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 /**
- * Interface PostRepositoryInterface
+ * Interface BannerRepositoryInterface
  * @package Modules\Api
  * @api
  */

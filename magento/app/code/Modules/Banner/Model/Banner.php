@@ -6,8 +6,8 @@ use Modules\Banner\Model\ResourceModel\Banner as BannerResource;
 use Magento\Framework\Model\AbstractModel;
 
 /**
- * Class Post
- * @package Modules\Blog\Model
+ * Class Banner
+ * @package Modules\Banner\Model
  */
 class Banner extends AbstractModel implements BannerInterface
 {
@@ -21,7 +21,7 @@ class Banner extends AbstractModel implements BannerInterface
      */
     protected function _construct() //@codingStandardsIgnoreLine
     {
-        $this->_init(BannerInterface::class);
+        $this->_init(BannerResource::class);
     }
 
     /**

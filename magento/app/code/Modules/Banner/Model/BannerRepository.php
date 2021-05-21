@@ -14,7 +14,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\StateException;
 
 /**
- * Class PostRepository
+ * Class BannerRepository
  * @package Modules\Banner\Model
  */
 class BannerRepository implements BannerRepositoryInterface

@@ -4,8 +4,8 @@ namespace Modules\Banner\Api\Data;
 use Magento\Framework\Api\SearchResultsInterface;
 
 /**
- * Interface PostSearchResultInterface
- * @package AlexPoletaev\Blog\Api\Data
+ * Interface BannerSearchResultInterface
+ * @package Modules\Banner\Api\Data
  */
 interface BannerSearchResultInterface extends SearchResultsInterface
 {

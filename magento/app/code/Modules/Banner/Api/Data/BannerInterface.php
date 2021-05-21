@@ -2,7 +2,7 @@
 namespace Modules\Banner\Api\Data;
 
 /**
- * Interface PostInterface
+ * Interface BannerInterface
  * @package Modules\Api\Data
  * @api
  */
