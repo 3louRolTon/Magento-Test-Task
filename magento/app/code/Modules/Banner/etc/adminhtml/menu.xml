@@ -14,13 +14,13 @@
              action="banner/index"
              parent="Modules_Banner::first_level"
              resource="Modules_Banner::view" />
-        <add id="Modules_Banner::third_level"
+        <!--<add id="Modules_Banner::third_level"
              title="Add New banner"
              module="Modules_Banner"
              sortOrder="2"
              dependsOnModule="Modules_Banner"
              action="banner/index/edit"
              parent="Modules_Banner::first_level"
-             resource="Modules_Banner::view" />
+             resource="Modules_Banner::view" />-->
     </menu>
 </config>

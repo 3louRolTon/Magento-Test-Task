@@ -11,6 +11,13 @@
             <item name="namespace" xsi:type="string">employee_form</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
+
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Modules\Banner\Block\Adminhtml\Banner\Edit\BackButton</item>
+            <item name="delete" xsi:type="string">Modules\Banner\Block\Adminhtml\Banner\Edit\DeleteButton</item>
+            <item name="reset" xsi:type="string">Modules\Banner\Block\Adminhtml\Banner\Edit\ResetButton</item>
+            <item name="save" xsi:type="string">Modules\Banner\Block\Adminhtml\Banner\Edit\SaveButton</item>
+        </item>
     </argument>
     <dataSource name="sample_form_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
