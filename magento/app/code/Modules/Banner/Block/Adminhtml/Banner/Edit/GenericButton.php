@@ -23,6 +23,11 @@ class GenericButton
     protected $registry;
 
     /**
+     * @var \Magento\Backend\Block\Widget\Context
+     */
+    protected $context;
+
+    /**
      * Constructor
      *
      * @param \Magento\Backend\Block\Widget\Context $context
@@ -32,6 +37,7 @@ class GenericButton
         \Magento\Backend\Block\Widget\Context $context,
         \Magento\Framework\Registry $registry
     ) {
+        $this->context = $context;
         $this->urlBuilder = $context->getUrlBuilder();
         $this->registry = $registry;
     }
@@ -43,8 +49,7 @@ class GenericButton
      */
     public function getId()
     {
-        $contact = $this->registry->registry('contact');
-        return $contact ? $contact->getId() : null;
+        return $this->context->getRequest()->getParam('id');
     }
 
     /**

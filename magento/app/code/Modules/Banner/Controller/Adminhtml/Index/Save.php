@@ -1,48 +1,96 @@
 <?php
+/**
+ * GiaPhuGroup Co., Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the GiaPhuGroup.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.giaphugroup.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Modules
+ * @package     Modules_Banner
+ * @copyright   Copyright (c) 2018-2019 GiaPhuGroup Co., Ltd. All rights reserved. (http://www.giaphugroup.com/)
+ * @license     https://www.giaphugroup.com/LICENSE.txt
+ */
+
 namespace Modules\Banner\Controller\Adminhtml\Index;
 
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
-use Modules\Banner\Model\Banner;
-use Magento\Framework\View\Result\PageFactory;
-use Magento\Framework\Session\SessionManagerInterface;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\TestFramework\Inspection\Exception;
 
-class Save extends Action
+class Save extends \Magento\Backend\App\Action
 {
+    /**
+     * @var DataPersistorInterface
+     */
+    protected $dataPersistor;
 
-    protected $_bannerFactory;
-    protected $resultPageFactory;
-    protected $_sessionManager;
-
+    /**
+     * @param Context $context
+     * @param DataPersistorInterface $dataPersistor
+     */
     public function __construct(
         Context $context,
-        BannerFactory $bannerFactory,
-        PageFactory  $resultPageFactory,
-        SessionManagerInterface $sessionManager
-    )
-    {
+        DataPersistorInterface $dataPersistor
+    ) {
+        $this->dataPersistor = $dataPersistor;
         parent::__construct($context);
-        $this->_bannerFactory = $bannerFactory;
-        $this->resultPageFactory = $resultPageFactory;
-        $this->_sessionManager = $sessionManager;
     }
 
+    /**
+     * Save action
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @return \Magento\Framework\Controller\ResultInterface
+     */
     public function execute()
     {
+        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        $BannerModel = $this->_bannerFactory->create();
-        $data = $this->getRequest()->getPost();
+        $data = $this->getRequest()->getPostValue();
 
-        $BannerModel->setData('banner_name', $data['banner_name']);
-        $BannerModel->setData('banner_text', $data['banner_text']);
-        $BannerModel->setData('banner_popel', $data['banner_popel']);
-        $BannerModel->setData('banner_one_show', $data['banner_one_show']);
-        $BannerModel->setData('banner_start_day', $data['banner_start_day']);
-        $BannerModel->setData('banner_start_day', $data['banner_start_day']);
+        if ($data) {
+            $id = $this->getRequest()->getParam('id');
 
-        $BannerModel->save();
+            if (empty($data['banner_id'])) {
+                $data['banner_id'] = null;
+            }
 
-        $this->_redirect('banner/index/index');
-        $this->messageManager->addSuccess(__('The data has been saved.'));
+            /** @var \Modules\Banner\Model\Banner $model */
+            $model = $this->_objectManager->create('Modules\Banner\Model\Banner')->load($id);
+            if (!$model->getId() && $id) {
+                $this->messageManager->addError(__('This banner no longer exists.'));
+                return $resultRedirect->setPath('*/*/');
+            }
+
+            $model->setData($data);
+
+            try {
+                $model->save();
+                $this->messageManager->addSuccess(__('You saved the banner.'));
+                $this->dataPersistor->clear('banners_slider');
+
+                if ($this->getRequest()->getParam('back')) {
+                    return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId()]);
+                }
+                return $resultRedirect->setPath('*/*/');
+            } catch (LocalizedException $e) {
+                $this->messageManager->addError($e->getMessage());
+            } catch (\Exception $e) {
+                $this->messageManager->addException($e, __('Something went wrong while saving the banner.'));
+            }
+
+            $this->dataPersistor->set('banners_slider', $data);
+            return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
+        }
+        return $resultRedirect->setPath('*/*/');
     }
 }

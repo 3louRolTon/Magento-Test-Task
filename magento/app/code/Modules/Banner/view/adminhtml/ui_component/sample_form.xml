@@ -25,6 +25,11 @@
             <argument name="name" xsi:type="string">sample_form_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">banner_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="banner/index/save"/>
+                </item>
+            </argument>
         </argument>
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
@@ -40,6 +45,17 @@
                 <item name="sortOrder" xsi:type="number">5</item>
             </item>
         </argument>
+        <field name="banner_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">banner</item>
+                    <item name="dataScope" xsi:type="string">banner_id</item>
+                </item>
+            </argument>
+        </field>
         <field name="banner_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -57,14 +73,15 @@
                 <tooltip>
                     <description translate="true">Show one time</description>
                 </tooltip>
+                <dataScope>banner_one_show</dataScope>
             </settings>
             <formElements>
                 <checkbox>
                     <settings>
                         <prefer>toggle</prefer>
                         <valueMap>
-                            <map name="false" xsi:type="boolean">false</map>
-                            <map name="true" xsi:type="boolean">true</map>
+                            <map name="false" xsi:type="boolean">0</map>
+                            <map name="true" xsi:type="boolean">1</map>
                         </valueMap>
                     </settings>
                 </checkbox>
