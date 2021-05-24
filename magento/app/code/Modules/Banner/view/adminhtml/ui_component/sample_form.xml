@@ -67,25 +67,20 @@
                 </item>
             </argument>
         </field>
-        <field name="banner_one_show" formElement="checkbox">
-            <settings>
-                <label translate="true">One show</label>
-                <tooltip>
-                    <description translate="true">Show one time</description>
-                </tooltip>
-                <dataScope>banner_one_show</dataScope>
-            </settings>
-            <formElements>
-                <checkbox>
-                    <settings>
-                        <prefer>toggle</prefer>
-                        <valueMap>
-                            <map name="false" xsi:type="boolean">0</map>
-                            <map name="true" xsi:type="boolean">1</map>
-                        </valueMap>
-                    </settings>
-                </checkbox>
-            </formElements>
+        <field name="banner_one_show">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">One time show</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="source" xsi:type="string">features</item>
+                </item>
+            </argument>
         </field>
         <field name="banner_start_day" formElement="date">
             <argument name="data" xsi:type="array">
