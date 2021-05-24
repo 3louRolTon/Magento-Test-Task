@@ -7,14 +7,26 @@
             <item name="provider" xsi:type="string">sample_listing.sample_listing_data_source</item>
             <item name="deps" xsi:type="string">sample_listing.sample_listing_data_source</item>
         </item>
-        <item name="spinner" xsi:type="string">sample_listing_columns</item>
     </argument>
-    <dataSource name="sample_listing_data_source">
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/edit"/>
+                <class>primary</class>
+                <label translate="true">Add New Banner</label>
+            </button>
+        </buttons>
+        <spinner>sample_listing_columns</spinner>
+        <deps>
+            <dep>sample_listing.sample_listing_data_source</dep>
+        </deps>
+    </settings>
+    <!--<dataSource name="sample_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Modules\Banner\Model\DataProvider</argument>
+            <argument name="class" xsi:type="string">Modules\Banner\Ui\Components\DataProvider</argument>
             <argument name="name" xsi:type="string">sample_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">id</argument>
-            <argument name="requestFieldName" xsi:type="string">page_id</argument>
+            <argument name="requestFieldName" xsi:type="string">banner_id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
@@ -25,8 +37,24 @@
                 </item>
             </argument>
         </argument>
+    </dataSource>-->
+    <dataSource component="Magento_Ui/js/grid/provider" name="sample_listing_data_source">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="sample_listing_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
     </dataSource>
     <columns name="sample_listing_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>banner_id</indexField>
+            </settings>
+        </selectionsColumn>
         <column name="banner_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -56,5 +84,10 @@
                 </item>
             </argument>
         </column>
+        <actionsColumn name="actions" class="Modules\Banner\Ui\Components\Listing\Column\Actions">
+            <settings>
+                <label translate="true">Actions</label>
+            </settings>
+        </actionsColumn>
     </columns>
 </listing>

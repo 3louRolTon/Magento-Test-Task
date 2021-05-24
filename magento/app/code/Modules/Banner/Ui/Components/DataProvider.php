@@ -1,22 +1,24 @@
 <?php
+/**
+* Webkul Software.
+*
+* @category  Webkul
+* @package   Webkul_UiForm
+* @author    Webkul
+* @copyright Copyright (c) 2010-2016 Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
 namespace Modules\Banner\Ui\Components;
 
-use Magento\Ui\DataProvider\AbstractDataProvider;
-use Modules\Banner\Model\ResourceModel\Banner\CollectionFactory;
+use Modules\Banner\Model\ResourceModel\Banner\CollectionFactory;;
 
-class DataProvider extends AbstractDataProvider
+class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
-    protected $bannerCollectionFactory;
-    protected $loadedData;
-
     /**
-     * @param string $name
-     * @param string $primaryFieldName
-     * @param string $requestFieldName
-     * @param \Modules\Banner\Model\ResourceModel\Banner\CollectionFactory $bannerCollectionFactory
-     * @param array $meta
-     * @param array $data
-     */
+    * @var array
+    */
+    protected $_loadedData;
+
     public function __construct(
         $name,
         $primaryFieldName,
@@ -24,18 +26,22 @@ class DataProvider extends AbstractDataProvider
         CollectionFactory $bannerCollectionFactory,
         array $meta = [],
         array $data = []
-    ) {
-        $this->bannerCollectionFactory = $bannerCollectionFactory->create();
+        ) {
+        $this->collection = $bannerCollectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
-    }
-
-    public function addFilter(\Magento\Framework\Api\Filter $filter)
-    {
-        return null;
     }
 
     public function getData()
     {
-        return $this->bannerCollectionFactory->getCollection();
+        if (isset($this->_loadedData)) {
+            return $this->_loadedData;
+        }
+
+        $items = $this->collection->getItems();
+
+        foreach ($items as $employee) {
+            $this->_loadedData[$employee->getId()] = $employee->getData();
+        }
+        return $this->_loadedData;
     }
 }

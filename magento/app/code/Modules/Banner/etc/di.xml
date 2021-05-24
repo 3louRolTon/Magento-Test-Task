@@ -7,4 +7,22 @@
 
     <preference for="Modules\Banner\Api\Data\BannerSearchResultInterface"
                 type="Magento\Framework\Api\SearchResults" />
+
+    <virtualType name="Modules\Banner\Ui\Components\DataProvider\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="name" xsi:type="string">sample_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">banner_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="mainTable" xsi:type="string">modules_banner_banners</argument>
+            <argument name="resourceModel" xsi:type="string">Modules\Banner\Model\ResourceModel\Banner\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sample_listing_data_source" xsi:type="string">Modules\Banner\Ui\Components\DataProvider\Collection</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
