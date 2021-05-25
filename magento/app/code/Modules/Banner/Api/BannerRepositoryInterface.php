@@ -40,4 +40,6 @@ interface BannerRepositoryInterface
      * @return bool
      */
     public function deleteById(int $id);
+
+    //public function getByParam();
 }

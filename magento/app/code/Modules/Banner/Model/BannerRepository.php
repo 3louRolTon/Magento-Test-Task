@@ -81,6 +81,18 @@ class BannerRepository implements BannerRepositoryInterface
         return $this->registry[$id];
     }
 
+/*    public function getByParam()
+    {
+        $now = new \DateTime();
+
+        $collection = $this->bannerCollectionFactory->create()
+            ->addFieldToFilter('banner_start_day', ['lteq' => $now->format('Y-m-d H:i:s')])
+            ->addFieldToFilter('banner_end_day', ['gteq' => $now->format('Y-m-d H:i:s')]);
+
+
+        return
+    }*/
+
     /**
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
      * @return \Modules\Banner\Api\Data\BannerSearchResultInterface

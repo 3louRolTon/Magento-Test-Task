@@ -17,12 +17,19 @@
         "Magento_Ui/js/modal/modal"
     ],function($, modal) {
         var popup;
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+        var dateTime = date+' '+time;
+
         $.ajax({
-            url:  'http://magento2.local/rest/all/V1/banner/banners/3',
+            url:  'http://magento2.local/rest/all/V1/banner/banners?searchCriteria[filterGroups][0][filters][0][field]=banner_start_day&searchCriteria[filterGroups][0][filters][0][value]='+dateTime+'&searchCriteria[filterGroups][0][filters][0][conditionType]=lteq&searchCriteria[filterGroups][0][filters][1][field]=banner_end_day&searchCriteria[filterGroups][0][filters][1][value]='+dateTime+'&searchCriteria[filterGroups][0][filters][1][conditionType]=gteq',
             type: 'get',
             data: {},
             success: function(response){
-                console.log(response);
+                response = response.items[randomInteger(0, response.total_count-1)];
+
                 $("#modal-title").html(response.title);
                 $("#modal-content").html(response.text);
                 $("#modal-popup-content").html(response.popel);
@@ -42,6 +49,12 @@
 
             }
         });
+
+        function randomInteger(min, max) {
+
+            let rand = min - 0.5 + Math.random() * (max - min + 1);
+            return Math.round(rand);
+        }
 
     });
 </script>
