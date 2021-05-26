@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Banner\Block;
 use Magento\Framework\View\Element\Template;
-use Modules\Banner\Model\Dummy;
+use Modules\Banner\Model\BannerConfig;
 
 class Banner extends \Magento\Framework\View\Element\Template
 {
@@ -9,22 +9,22 @@ class Banner extends \Magento\Framework\View\Element\Template
 
     protected $scopeConfig;
 
-    protected $dummy;
+    protected $bannerConfig;
 
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
-        Dummy $dummy,
+        BannerConfig $bannerConfig,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     ) {
         $this->scopeConfig = $scopeConfig;
-        $this->dummy = $dummy;
+        $this->bannerConfig = $bannerConfig;
         parent::__construct($context);
     }
 
     public function getSettingsBanner()
     {
 
-        return $this->dummy->getSettings();
+        return $this->bannerConfig->getSettings();
 
     }
 }
