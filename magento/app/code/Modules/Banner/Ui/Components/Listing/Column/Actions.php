@@ -16,17 +16,17 @@ class Actions extends Column
     const ROW_EDIT_URL = 'banner/index/edit';
     const ROW_DELETE_URL = 'banner/index/delete';
     /** @var UrlInterface */
-    protected $_urlBuilder;
+    protected $urlBuilder;
 
     /**
      * @var string
      */
-    private $_editUrl;
+    private $editUrl;
 
     /**
      * @var string
      */
-    private $_deleteUrl;
+    private $deleteUrl;
 
     /**
      * @param ContextInterface   $context
@@ -46,9 +46,9 @@ class Actions extends Column
         $deleteUrl = self::ROW_DELETE_URL
     )
     {
-        $this->_urlBuilder = $urlBuilder;
-        $this->_editUrl = $editUrl;
-        $this->_deleteUrl = $deleteUrl;
+        $this->urlBuilder = $urlBuilder;
+        $this->editUrl = $editUrl;
+        $this->deleteUrl = $deleteUrl;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -65,15 +65,15 @@ class Actions extends Column
                 $name = $this->getData('name');
                 if (isset($item['banner_id'])) {
                     $item[$name]['edit'] = [
-                        'href' => $this->_urlBuilder->getUrl(
-                            $this->_editUrl,
+                        'href' => $this->urlBuilder->getUrl(
+                            $this->editUrl,
                             ['id' => $item['banner_id']]
                         ),
                         'label' => __('Edit'),
                     ];
                     $item[$name]['delete'] = [
-                        'href' => $this->_urlBuilder->getUrl(
-                                $this->_deleteUrl,
+                        'href' => $this->urlBuilder->getUrl(
+                                $this->deleteUrl,
                                 ['id' => $item['banner_id']]
                         ),
                         'label' => __('Delete'),

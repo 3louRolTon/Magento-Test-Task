@@ -44,8 +44,8 @@
         </settings>
         <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="sample_listing_data_source">
             <settings>
-                <requestFieldName>entity_id</requestFieldName>
-                <primaryFieldName>entity_id</primaryFieldName>
+                <requestFieldName>banner_id</requestFieldName>
+                <primaryFieldName>banner_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
@@ -67,6 +67,13 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="banner_one_show">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">One_Show</item>
                 </item>
             </argument>
         </column>

@@ -1,4 +1,12 @@
-<div id="modal">
+<?php
+
+/**
+ * @var \Modules\Banner\Block\Banner $block
+ */
+
+if($block->getSettingsBanner()) {?>
+
+<div id="modal" style="background-color: #adadad;">
     <div class="modal-body-content">
         <h2 id="modal-title"></h2>
         <p id="modal-content"></p>
@@ -12,15 +20,16 @@
 </div>
 
 <script type="text/x-magento-init">
-        {
-            "*": {
-                "Magento_Ui/js/core/app": {
-                    "components": {
-                        "modal_overlay": {
-                            "component": "Modules_Banner/js/modal_overlay"
-                        }
-                     }
-                }
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "modal_overlay": {
+                        "component": "Modules_Banner/js/modal_overlay"
+                    }
+                 }
             }
         }
-    </script>
+    }
+</script>
+<?php }

@@ -3,7 +3,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="main.content">
-            <block class="Magento\Framework\View\Element\Template"
+            <block class="Modules\Banner\Block\Banner"
                    template="Modules_Banner::modal_overlay.phtml"
                    name="modalOverlay"
                    as="modalOverlay"/>

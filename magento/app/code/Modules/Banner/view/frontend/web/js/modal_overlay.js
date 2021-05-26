@@ -2,6 +2,7 @@ require([
     "jquery",
     "Magento_Ui/js/modal/modal"
 ],function($, modal) {
+
     var popup;
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -10,29 +11,29 @@ require([
     var dateTime = date+' '+time;
 
     $.ajax({
-        url:  'http://magento2.local/rest/all/V1/banner/banners?searchCriteria[filterGroups][0][filters][0][field]=banner_start_day&searchCriteria[filterGroups][0][filters][0][value]='+dateTime+'&searchCriteria[filterGroups][0][filters][0][conditionType]=lteq&searchCriteria[filterGroups][0][filters][1][field]=banner_end_day&searchCriteria[filterGroups][0][filters][1][value]='+dateTime+'&searchCriteria[filterGroups][0][filters][1][conditionType]=gteq',
+        url:  '/getbanner/banner/index',
         type: 'get',
         data: {},
         success: function(response){
 
             var banners_id = JSON.parse($.cookie("banners_id"));
             if(banners_id == null) banners_id = [];
-            var banner = getBanner(response.items.length, response.items, banners_id);
+            var banner = getBanner(response.length, response, banners_id);
 
-            if(banner.one_show && banners_id.indexOf(banner.id) == -1) {
+            if(banner.banner_one_show && banners_id.indexOf(banner.banner_id) == -1) {
 
-                banners_id.push(banner.id);
+                banners_id.push(banner.banner_id);
                 $.cookie("banners_id", JSON.stringify(banners_id));
             }
 
-            $("#modal-title").html(banner.title);
-            $("#modal-content").html(banner.text);
-            $("#modal-popup-content").html(banner.popel);
+            $("#modal-title").html(banner.banner_name);
+            $("#modal-content").html(banner.banner_text);
+            $("#modal-popup-content").html(banner.banner_popel);
 
             var options = {
                 type: 'popup',
                 responsive: true,
-                title: banner.title
+                title: banner.banner_title
             };
 
             popup = modal(options, $('#modal-popup'));
@@ -46,9 +47,11 @@ require([
     });
 
     function getBanner(n, banners, banners_id){
+        //console.log(1);
+        //console.log(banners);
         if(n == 0){
             var currentBanner = banners[0];
-            if(banners_id.indexOf(currentBanner.id) != -1){
+            if(banners_id.indexOf(currentBanner.banner_id) != -1){
                 return []
             }
             return currentBanner;
@@ -57,7 +60,7 @@ require([
             var currentId = Math.floor((Math.random() * n) + 1) - 1;
             var currentBanner = banners[currentId];
 
-            if(banners_id.indexOf(currentBanner.id) != -1){
+            if(banners_id.indexOf(currentBanner.banner_id) != -1){
                 banners.splice(currentId, 1);
                 currentBanner = getBanner(n-1, banners, banners_id);
             }
