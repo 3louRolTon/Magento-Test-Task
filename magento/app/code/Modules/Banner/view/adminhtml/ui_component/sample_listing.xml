@@ -49,11 +49,37 @@
             </settings>
         </dataProvider>
     </dataSource>
+    <massaction name="listing_massaction">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="selectProvider" xsi:type="string">sample_listing.sample_listing.sample_listing_columns.ids</item>
+                <item name="indexField" xsi:type="string">banner_id</item>
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+            </item>
+        </argument>
+        <action name="delete">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">delete</item>
+                    <item name="label" xsi:type="string" translate="true">Delete</item>
+                    <item name="url" xsi:type="url" path="*/*/massDelete"/>
+                    <item name="confirm" xsi:type="array">
+                        <item name="title" xsi:type="string" translate="true">Delete Post</item>
+                        <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
+                    </item>
+                </item>
+            </argument>
+        </action>
+    </massaction>
     <columns name="sample_listing_columns">
         <selectionsColumn name="ids">
-            <settings>
-                <indexField>banner_id</indexField>
-            </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">55</item>
+                    <item name="indexField" xsi:type="string">banner_id</item>
+                </item>
+            </argument>
         </selectionsColumn>
         <column name="banner_id">
             <argument name="data" xsi:type="array">

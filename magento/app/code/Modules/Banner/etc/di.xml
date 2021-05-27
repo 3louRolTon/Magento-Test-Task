@@ -25,4 +25,9 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Magento\Cms\Model\Wysiwyg\Config">
+        <plugin name="add_wysiwyg_data" type="Modules\Banner\Plugin\WysiwygConfig" sortOrder="30" />
+    </type>
+
 </config>
